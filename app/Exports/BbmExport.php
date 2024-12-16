@@ -12,14 +12,13 @@ use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-class BbmExport implements FromCollection, WithHeadings, WithEvents, WithColumnFormatting
+class BbmExport implements FromCollection, WithHeadings
 {
     use RegistersEventListeners;
     /**
     * @return \Illuminate\Support\Collection
     */
     protected $data;
-    protected $head;
 
     /**
 
@@ -31,11 +30,10 @@ class BbmExport implements FromCollection, WithHeadings, WithEvents, WithColumnF
 
      */
 
-    public function __construct($data,$head)
+    public function __construct($data)
     {
  
         $this->data = $data;
-        $this->head = $head;
  
     }
  
@@ -61,16 +59,32 @@ class BbmExport implements FromCollection, WithHeadings, WithEvents, WithColumnF
     public function headings() :array
     {
 
-        return $this->head;
-
-    }
-
-    public function columnFormats(): array
-    {
         return [
-            'A' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+            'Tgl',
+            'No Polisi',
+            'Jenis Mobil',
+            'Km Awal',
+            'Km Akhir',
+            'Total Km',
+            'Prev Sum Total Km',
+            'Isi Bbm',
+            'Supir',
+            'Ritase',
+            'Divisi',
+            'Harga Bbm',
+            'Analisa',
+            'Cabang',
+            'Keterangan',
         ];
+
     }
+
+    // public function columnFormats(): array
+    // {
+    //     return [
+    //         'A' => NumberFormat::FORMAT_DATE_DDMMYYYY,
+    //     ];
+    // }
 
     // public static function afterSheet(AfterSheet $event)
     // {
